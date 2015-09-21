@@ -1,8 +1,8 @@
 {
   "name": "siren-crawler",
-  "version": "1.0.0",
-  "description": "0.0.1",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Siren Hypermedia crawler which renders hypermedia with a React UI",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,44 @@
     "testing"
   ],
   "author": "John Chapman",
-  "license": "MIT"
+  "license": "MIT",
+  "browserify-shim": {
+    "bootstrap": {
+      "depends": "jquery:jQuery"
+    }
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+    "browserify": "^11.1.0",
+    "browserify-shim": "^3.8.10",
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-mocha": "^2.1.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-size": "^2.0.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "gulp-webserver": "^0.9.1",
+    "run-sequence": "^1.1.3",
+    "sinon": "^1.16.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0"
+  },
+  "dependencies": {
+    "bluebird": "^2.10.0",
+    "font-awesome": "^4.4.0",
+    "jQuery": "^1.7.4",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
+  }
 }
