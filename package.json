@@ -50,9 +50,11 @@
   },
   "dependencies": {
     "bluebird": "^2.10.0",
+    "flux-rx": "0.0.1",
     "font-awesome": "^4.4.0",
     "jQuery": "^1.7.4",
     "react": "^0.13.3",
-    "react-router": "^0.13.3"
+    "react-router": "^0.13.3",
+    "super-siren": "^0.1.3"
   }
 }
