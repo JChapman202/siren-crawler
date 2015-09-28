@@ -52,7 +52,7 @@ gulp.task('build', ['html', 'sass'], () => {
 		extensions: ['.jsx']
 	};
 
-	return browserify('src/app.js', options)
+	return browserify('src/app.jsx', options)
 		.transform(babelify.configure({experimental: false}))
 		.bundle()
 		.on('error', function(e) { util.log(util.colors.blue('[BROWSERIFY] ') + util.colors.red(e.toString())) })
@@ -61,7 +61,7 @@ gulp.task('build', ['html', 'sass'], () => {
 		.pipe(sourcemaps.init({ loadMaps: true }))
 		.pipe(rename('app.js'))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('/site'))
+		.pipe(gulp.dest('site/'))
 });
 
 gulp.task('serve', () => {
@@ -92,7 +92,8 @@ gulp.task('test', () => {
 });
 
 gulp.task('watch', () => {
-	gulp.watch(['index.js', 'lib/**/*.js', 'test/**/*.js'], ['lint', 'test', 'build']);
+	gulp.watch(['src/**/*.jsx', 'src/**/*.js'], ['lint', 'test', 'build']);
+	gulp.watch(['test/**/*.js'], ['lint', 'test']);
 });
 
 gulp.task('default', ['watch', 'lint', 'test', 'build', 'serve']);

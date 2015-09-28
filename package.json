@@ -28,7 +28,9 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
+    "babel-runtime": "^5.8.25",
     "babelify": "^6.3.0",
+    "bootstrap-sass": "^3.3.5",
     "browserify": "^11.1.0",
     "browserify-shim": "^3.8.10",
     "gulp": "^3.9.0",
@@ -49,12 +51,13 @@
     "watchify": "^3.4.0"
   },
   "dependencies": {
-    "bluebird": "^2.10.0",
-    "flux-rx": "0.0.1",
+    "bluebird": "^2.10.1",
+    "flux-rx": "~0.0.3",
     "font-awesome": "^4.4.0",
     "jQuery": "^1.7.4",
     "react": "^0.13.3",
-    "react-router": "^0.13.3",
+    "react-bootstrap": "^0.25.2",
+    "react-router": "^1.0.0-beat3",
     "super-siren": "^0.1.3"
   }
 }
