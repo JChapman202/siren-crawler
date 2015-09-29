@@ -29,8 +29,8 @@ gulp.task('sass', () => {
 		.pipe(sourcemaps.init())
 		.pipe(sass({
 			includePaths: [
-				'/node_modules/font-awesome/scss',
-				'/node_modules/bootstrap-sass/assets/stylesheets'
+				__dirname + '/node_modules/font-awesome/scss',
+				__dirname + '/node_modules/bootstrap-sass/assets/stylesheets'
 			]
 		}))
 		.on('error', function(e) { util.log(util.colors.blue('[SASS] ') + util.colors.red(e.toString())); })
@@ -49,6 +49,7 @@ gulp.task('html', () => {
 
 gulp.task('build', ['html', 'sass'], () => {
 	var options = {
+		debug: true,
 		extensions: ['.jsx']
 	};
 
@@ -70,7 +71,13 @@ gulp.task('serve', () => {
 			fallback: '/index.html',
 			host: '0.0.0.0',
 			livereload: true,
-			port: 8080
+			port: 8080,
+			proxies: [
+				{
+					source: '/api',
+					target: 'http://localhost:8081/api'
+				}
+			]
 		}));
 });
 

@@ -15,7 +15,7 @@ class SirenService {
 			})
 			.catch(err => {
 				dispatcher.dispatch(new RequestFailedMessage(requestMessage, err));
-			})
+			});
 	}
 }
 

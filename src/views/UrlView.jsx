@@ -13,10 +13,10 @@ class UrlView extends PureView {
 	}
 
 	handleChange() {
-		this.setState({url: this.refs.input.value});
+		this.setState({url: this.refs.input.getValue()});
 	}
 
-	handleclick(e) {
+	handleClick(e) {
 		e.preventDefault();
 		sirenService.getSiren(this.state.url);
 	}
@@ -33,9 +33,7 @@ class UrlView extends PureView {
 					labelClassName="label"
 					onChange={this.handleChange.bind(this)}
 				/>
-				<Button
-					onClick={this.handleClick.bind(this)}
-				/>
+				<Button bsStyle="primary" onClick={this.handleClick.bind(this)}>Submit</Button>
 			</div>
 		);
 	}
