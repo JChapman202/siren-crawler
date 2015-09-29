@@ -1,5 +1,10 @@
+$fa-font-path: '/fonts';
+
 @import "bootstrap";
+@import "font-awesome";
 
 body {
 	width: 100%;
 }
+
+@import "./SirenResultView";

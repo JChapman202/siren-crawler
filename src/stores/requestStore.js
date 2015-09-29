@@ -12,8 +12,12 @@ class RequestStore extends Store {
 		});
 
 		this.registerMessage(RequestMessage, processRequest.bind(this));
-		this.registerMessage(RequestLoadedMessage, processSuccess.bind(this));
+		this.registerMessage(RequestLoadedMessage, processResult.bind(this));
 		this.registerMessage(RequestFailedMessage, processFailure.bind(this));
+	}
+
+	get currentRequest() {
+		return this._state.get('currentRequest');
 	}
 }
 
@@ -23,8 +27,10 @@ function processRequest(requestMessage) {
 	};
 }
 
-function processSuccess(successMessage) {
-
+function processResult(resultMessage) {
+	return {
+		currentRequest: this._state.get('currentRequest').processResult(resultMessage)
+	};
 }
 
 function processFailure(failureMessage) {

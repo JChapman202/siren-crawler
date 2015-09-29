@@ -24,7 +24,7 @@ gulp.task('clean', () => {
 		.pipe(clean());
 });
 
-gulp.task('sass', () => {
+gulp.task('sass', ['fonts'], () => {
 	gulp.src(['src/styles/app.scss'])
 		.pipe(sourcemaps.init())
 		.pipe(sass({
@@ -98,9 +98,15 @@ gulp.task('test', () => {
 		}));
 });
 
+gulp.task('fonts', () => {
+	return gulp.src(__dirname + '/node_modules/font-awesome/fonts/*')
+		.pipe(gulp.dest('site/fonts'));
+});
+
 gulp.task('watch', () => {
 	gulp.watch(['src/**/*.jsx', 'src/**/*.js'], ['lint', 'test', 'build']);
 	gulp.watch(['test/**/*.js'], ['lint', 'test']);
+	gulp.watch(['src/**/*.scss'], ['sass']);
 });
 
 gulp.task('default', ['watch', 'lint', 'test', 'build', 'serve']);
