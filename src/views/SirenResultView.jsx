@@ -17,36 +17,56 @@ class SirenResultView extends PureView {
 		//TODO: show all rels
 		var linkItems = siren.links.map(link => <li>{link.rels.first() + ": "}<a href={link.href}>{link.href}</a></li>);
 		var linkedEntities = siren.linkedEntities.map(link => <li>{link.rels.first() + ": "}<a href={link.href}>{link.href}</a></li>);
+		var embeddedEntities = siren.embeddedEntities.map(entity => <Panel header={"rel: " + entity.rels.toJS()}><SirenResultView siren={entity.entity} /></Panel>);
 
 		var actionItems = siren.actions.map(action => <ActionView action={action} />);
 
-		//TODO: add actions
-		//TODO: add embedded entities
 		return (
 			<div className="siren-result-view">
-				<Panel header="Classes">
-					<ul>
-						{classItems}
-					</ul>
-				</Panel>
-				<Panel header="Properties">
-					<ul>
-						{propertyItems}
-					</ul>
-				</Panel>
-				<Panel header="Links">
-					<ul>
-						{linkItems}
-					</ul>
-				</Panel>
-				<Panel header="Linked Entities">
-					<ul>
-						{linkedEntities}
-					</ul>
-				</Panel>
-				<Panel header="Actions">
-					{actionItems}
-				</Panel>
+				{
+					!classItems.isEmpty() &&
+					<Panel header="Classes">
+						<ul>
+							{classItems}
+						</ul>
+					</Panel>
+				}
+				{
+					!propertyItems.isEmpty() &&
+					<Panel header="Properties">
+						<ul>
+							{propertyItems}
+						</ul>
+					</Panel>
+				}
+				{
+					!linkItems.isEmpty() &&
+					<Panel header="Links">
+						<ul>
+							{linkItems}
+						</ul>
+					</Panel>
+				}
+				{
+					!linkedEntities.isEmpty() &&
+					<Panel header="Linked Entities">
+						<ul>
+							{linkedEntities}
+						</ul>
+					</Panel>
+				}
+				{
+					!embeddedEntities.isEmpty() &&
+					<Panel header="Embedded Entities">
+						{embeddedEntities}
+					</Panel>
+				}
+				{
+					!actionItems.isEmpty() &&
+					<Panel header="Actions">
+						{actionItems}
+					</Panel>
+				}
 			</div>
 		)
 	}
