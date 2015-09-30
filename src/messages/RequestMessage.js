@@ -5,10 +5,11 @@ var requestId = 0;
 class RequestMessage extends Immutable.Record({
 	requestId: null,
 	requestMethod: 'GET',
-	requestHref: null
+	requestHref: null,
+	data: null
 }) {
-	constructor(requestMethod, requestHref) {
-		super({requestId: ++requestId, requestMethod, requestHref});
+	constructor(requestMethod, requestHref, data) {
+		super({requestId: ++requestId, requestMethod, requestHref, data});
 	}
 }
 

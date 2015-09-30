@@ -2,12 +2,9 @@ import React from 'react';
 import {PureView} from 'flux-rx';
 import Siren from 'super-siren';
 import {Panel} from 'react-bootstrap';
+import ActionView from './ActionView';
 
 class SirenResultView extends PureView {
-	constructor() {
-		super();
-	}
-
 	render() {
 		var siren = this.props.siren;
 
@@ -20,6 +17,8 @@ class SirenResultView extends PureView {
 		//TODO: show all rels
 		var linkItems = siren.links.map(link => <li>{link.rels.first() + ": "}<a href={link.href}>{link.href}</a></li>);
 		var linkedEntities = siren.linkedEntities.map(link => <li>{link.rels.first() + ": "}<a href={link.href}>{link.href}</a></li>);
+
+		var actionItems = siren.actions.map(action => <ActionView action={action} />);
 
 		//TODO: add actions
 		//TODO: add embedded entities
@@ -44,6 +43,9 @@ class SirenResultView extends PureView {
 					<ul>
 						{linkedEntities}
 					</ul>
+				</Panel>
+				<Panel header="Actions">
+					{actionItems}
 				</Panel>
 			</div>
 		)
