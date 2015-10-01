@@ -19,12 +19,12 @@ var sass = require('gulp-sass');
 
 require('babel/register');
 
-gulp.task('clean', () => {
+gulp.task('clean', function() {
 	return gulp.src(['site'], {read: false})
 		.pipe(clean());
 });
 
-gulp.task('sass', ['fonts'], () => {
+gulp.task('sass', ['fonts'], function() {
 	gulp.src(['src/styles/app.scss'])
 		.pipe(sourcemaps.init())
 		.pipe(sass({
@@ -42,12 +42,12 @@ gulp.task('sass', ['fonts'], () => {
 		.pipe(gulp.dest('site/styles/'));
 });
 
-gulp.task('html', () => {
+gulp.task('html', function() {
 	return gulp.src(['src/**/*.html'])
 		.pipe(gulp.dest('site'));
 });
 
-gulp.task('build', ['html', 'sass'], () => {
+gulp.task('build', ['html', 'sass'], function() {
 	var options = {
 		debug: true,
 		extensions: ['.jsx']
@@ -65,7 +65,7 @@ gulp.task('build', ['html', 'sass'], () => {
 		.pipe(gulp.dest('site/'))
 });
 
-gulp.task('serve', () => {
+gulp.task('serve', function() {
 	return gulp.src('site')
 		.pipe(webserver({
 			fallback: '/index.html',
@@ -81,14 +81,14 @@ gulp.task('serve', () => {
 		}));
 });
 
-gulp.task('lint', () => {
+gulp.task('lint', function() {
 	return gulp.src(['src/**/*.js', 'test/**/*.js'])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failOnError());
 });
 
-gulp.task('test', () => {
+gulp.task('test', function() {
 	return gulp.src(['test/**/*.js'], {read: false})
 		.pipe(mocha({
 			compilers: {
@@ -98,12 +98,12 @@ gulp.task('test', () => {
 		}));
 });
 
-gulp.task('fonts', () => {
+gulp.task('fonts', function() {
 	return gulp.src(__dirname + '/node_modules/font-awesome/fonts/*')
 		.pipe(gulp.dest('site/fonts'));
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', function() {
 	gulp.watch(['src/**/*.jsx', 'src/**/*.js'], ['lint', 'test', 'build']);
 	gulp.watch(['test/**/*.js'], ['lint', 'test']);
 	gulp.watch(['src/**/*.scss'], ['sass']);
