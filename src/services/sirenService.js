@@ -3,6 +3,7 @@ import dispatcher from '../dispatcher';
 import RequestMessage from '../messages/RequestMessage';
 import RequestLoadedMessage from '../messages/RequestLoadedMessage';
 import RequestFailedMessage from '../messages/RequestFailedMessage';
+import {getUrl} from '../utilities/links';
 
 class SirenService {
 	getSiren(href) {
@@ -11,8 +12,8 @@ class SirenService {
 		processRequest(requestMessage, Siren.get(href));
 	}
 
-	submitAction(action, data) {
-		var requestMessage = new RequestMessage(action.method, action.href, data);
+	submitAction(siren, action, data) {
+		var requestMessage = new RequestMessage(action.method, getUrl(siren, action.href), data);
 
 		processRequest(requestMessage, action.perform(data));
 	}

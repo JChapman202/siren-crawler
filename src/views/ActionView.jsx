@@ -1,7 +1,7 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
 import {Panel, Input, ButtonToolbar, ButtonInput} from 'react-bootstrap';
-import {Action} from 'super-siren';
+import Siren, {Action} from 'super-siren';
 import sirenService from '../services/sirenService';
 
 class ActionView extends PureView {
@@ -28,7 +28,7 @@ class ActionView extends PureView {
 			data[field.name] = field.value
 		});
 
-		sirenService.submitAction(this.props.action, data);
+		sirenService.submitAction(this.props.siren, this.props.action, data);
 	}
 
 	render() {
@@ -50,6 +50,7 @@ class ActionView extends PureView {
 
 	static get defaultProps() {
 		return {
+			siren: Siren.empty,
 			action: Action.empty
 		}
 	}
