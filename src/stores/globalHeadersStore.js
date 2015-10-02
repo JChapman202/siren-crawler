@@ -20,7 +20,7 @@ class GlobalHeadersStore extends Store {
 
 function processHeaders(headersMessage) {
 	return {
-		headers: headersMessage.map(map => new Header(map.get('key'), map.get('value')))
+		headers: headersMessage.headers.map(map => new Header(map.get('key'), map.get('value')))
 	};
 }
 

@@ -6,16 +6,23 @@ import globalHeadersStore from '../stores/globalHeadersStore';
 
 class GlobalHeadersView extends PureView {
 	constructor() {
+		super();
+
 		this.state = {
 			headers: globalHeadersStore.headers
 		};
 	}
 
+	initialize(disposableStack) {
+		disposableStack.push(globalHeadersStore.eventStream.subscribe(processHeaders.bind(this)));
+		globalHeadersService.loadHeaders();
+	}
+
 	render() {
 		var rows = this.state.headers.map(header => (
 			<tr>
-				<td><Input value={header.key} onChange={processKeyChange.bind(this, header)} /></td>
-				<td><Input value={header.value} onChange={processValueChange.bind(this, header)} /></td>
+				<td><Input type='text' value={header.key} onChange={onKeyChange.bind(this, header)} /></td>
+				<td><Input type='text' value={header.value} onChange={onValueChange.bind(this, header)} /></td>
 			</tr>
 		));
 
@@ -23,12 +30,12 @@ class GlobalHeadersView extends PureView {
 			<div className='global-headers-view'>
 				<Table striped bordered condensed>
 					<thead>
-						<tr>
+						<th>
 							Name
-						</tr>
-						<tr>
+						</th>
+						<th>
 							Value
-						</tr>
+						</th>
 					</thead>
 					<tbody>
 						{rows}
@@ -37,6 +44,20 @@ class GlobalHeadersView extends PureView {
 			</div>
 		);
 	}
+}
+
+function onKeyChange(header, e) {
+	globalHeadersService.updateHeader(header, e.target.value, header.value);
+}
+
+function onValueChange(header, e) {
+	globalHeadersService.updateHeader(header, header.key, e.target.value);
+}
+
+function processHeaders() {
+	this.setState({
+		headers: globalHeadersStore.headers
+	});
 }
 
 export default GlobalHeadersView;
