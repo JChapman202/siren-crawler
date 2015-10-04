@@ -1,5 +1,6 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
+import {Link} from 'react-router';
 import sirenService from '../services/sirenService';
 import Siren from 'super-siren';
 import Uri from 'urijs';
@@ -21,7 +22,7 @@ class SirenLinkView extends PureView {
 
 	render() {
 		return (
-			<a href="#" onClick={this.handleClick.bind(this)}>{this.state.href}</a>
+			<Link to={"/" + encodeURIComponent(this.state.href)}>{this.state.href}</Link>
 		);
 	}
 

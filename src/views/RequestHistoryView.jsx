@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
+import {Link} from 'react-router';
 import {Panel} from 'react-bootstrap';
 import {PureView} from 'flux-rx';
 import requestStore from '../stores/requestStore';
@@ -19,9 +20,11 @@ class RequestHistoryView extends PureView {
 
 	render() {
 		var items = this.state.requests.map(item =>
-			<li className={item.method.toLowerCase()}>
-				<span className='request-method'>{item.method}</span>
-				<span className='request-href'>{item.href}</span>
+			<li>
+				<Link to={'/' + encodeURIComponent(item.href)}>
+					<span className='request-method'>{item.method}</span>
+					<span className='request-href'>{item.href}</span>
+				</Link>
 			</li>
 		);
 

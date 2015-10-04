@@ -54,6 +54,7 @@
     "bluebird": "^2.10.1",
     "flux-rx": "~0.0.3",
     "font-awesome": "^4.4.0",
+    "history": "^1.11.1",
     "immutable": "^3.7.5",
     "jQuery": "^1.7.4",
     "react": "^0.13.3",

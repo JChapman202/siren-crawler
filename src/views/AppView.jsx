@@ -13,7 +13,7 @@ class AppView extends PureView {
 				<PageHeader>Siren Crawler</PageHeader>
 				<RequestHistoryView />
 				<GlobalHeadersView />
-				<UrlView />
+				<UrlView history={this.props.history} getHref={this.props.params.getHref} />
 				<RequestView />
 			</div>
 		);

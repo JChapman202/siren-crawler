@@ -8,8 +8,24 @@ class UrlView extends PureView {
 		super(props);
 
 		this.state = {
-			url: ''
+			url: props.getHref
 		};
+	}
+
+	componentWillMount() {
+		if (this.state.url && this.state.url.length > 0) {
+			sirenService.getSiren(this.state.url);
+		}
+	}
+
+	componentWillReceiveProps(newProps) {
+		this.setState({
+			url: newProps.getHref
+		});
+
+		if (newProps.getHref && newProps.getHref !== this.state.url) {
+			sirenService.getSiren(newProps.getHref);
+		}
 	}
 
 	handleChange() {
@@ -18,7 +34,7 @@ class UrlView extends PureView {
 
 	handleClick(e) {
 		e.preventDefault();
-		sirenService.getSiren(this.state.url);
+		this.props.history.pushState(null, '/' + encodeURIComponent(this.state.url));
 	}
 
 	render() {
