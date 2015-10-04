@@ -8,11 +8,15 @@ class Request extends Immutable.Record({
 	result: null
 }) {
 	constructor(status, method, href) {
-		super({status, method, href});
+		super({
+			status: status,
+			method: method,
+			href: href
+		});
 	}
 
 	static fromRequestMessage(requestMessage) {
-		return new Request(requestStatus.loading, requestMessage.method, requestMessage.href);
+		return new Request(requestStatus.loading, requestMessage.requestMethod, requestMessage.requestHref);
 	}
 
 	processResult(resultMessage) {
