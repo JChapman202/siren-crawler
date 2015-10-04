@@ -1,5 +1,6 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
+import {Panel} from 'react-bootstrap';
 import requestStore from '../stores/requestStore';
 import SirenResultView from './SirenResultView';
 
@@ -29,9 +30,9 @@ class RequestView extends PureView {
 		}
 
 		return (
-			<div>
+			<Panel header={request.method + ' ' + request.href + ' (' + request.duration + ' ms) '}>
 				{body}
-			</div>
+			</Panel>
 		);
 	}
 }

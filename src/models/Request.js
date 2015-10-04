@@ -5,14 +5,27 @@ class Request extends Immutable.Record({
 	status: requestStatus.loading,
 	method: 'GET',
 	href: null,
-	result: null
+	result: null,
+	requestTime: null,
+	responseTime: null
 }) {
 	constructor(status, method, href) {
 		super({
 			status: status,
 			method: method,
-			href: href
+			href: href,
+			requestTime: new Date()
 		});
+	}
+
+	get duration() {
+		var returnVal = null;
+
+		if (this.responseTime) {
+			returnVal = this.responseTime.getTime() - this.requestTime.getTime();
+		}
+
+		return returnVal;
 	}
 
 	static fromRequestMessage(requestMessage) {
@@ -21,14 +34,20 @@ class Request extends Immutable.Record({
 
 	processResult(resultMessage) {
 		return this.withMutations(map => {
-			map.set('status', requestStatus.loaded);
-			map.set('result', resultMessage.result);
+			map.merge({
+				status: requestStatus.loaded,
+				result: resultMessage.result,
+				responseTime: new Date()
+			});
 		});
 	}
 
 	processFailure(failureMessage) {
 		return this.withMutations(map => {
-			map.set('status', requestStatus.failed);
+			map.merge({
+				status: requestStatus.failed,
+				responseTime: new Date()
+			});
 		});
 	}
 }

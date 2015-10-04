@@ -34,7 +34,14 @@ class UrlView extends PureView {
 
 	handleClick(e) {
 		e.preventDefault();
-		this.props.history.pushState(null, '/' + encodeURIComponent(this.state.url));
+
+		if (this.state.url === this.props.getHref) {
+			//if we are already on this URL, clicking submit acts as a refresh
+			sirenService.getSiren(this.props.getHref);
+		}
+		else {
+			this.props.history.pushState(null, '/' + encodeURIComponent(this.state.url));
+		}
 	}
 
 	render() {
