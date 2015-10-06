@@ -17,6 +17,20 @@ class GlobalHeaderService {
 	 * @return {Void}          undefined
 	 */
 	updateHeader(header, key, value) {
+		//TODO: ideally this update would not be so disruptive
+		Siren.Client.removeHeader(header.key);
+		Siren.Client.addHeader(key, value);
+
+		dispatchCurrentHeaders();
+	}
+
+	removeHeader(header) {
+		Siren.Client.removeHeader(header.key);
+		dispatchCurrentHeaders();
+	}
+
+	addHeader(key, value) {
+		Siren.Client.addHeader(key, value);
 		dispatchCurrentHeaders();
 	}
 }
