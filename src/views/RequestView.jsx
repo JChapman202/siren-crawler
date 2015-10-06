@@ -28,7 +28,7 @@ class RequestView extends PureView {
 
 		if (request.status.complete) {
 			if (request.result && request.result.body instanceof Siren) {
-				body = <SirenResultView siren={request.result.body} />
+				body = <SirenResultView request={request} siren={request.result.body} />
 			}
 			else {
 				body = null;

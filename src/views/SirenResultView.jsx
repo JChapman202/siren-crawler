@@ -8,6 +8,7 @@ import SirenLinkView from './SirenLinkView';
 class SirenResultView extends PureView {
 	render() {
 		var siren = this.props.siren;
+		var request = this.props.request;
 
 		//TODO: perhaps tables would make more sense than lis?
 
@@ -16,9 +17,9 @@ class SirenResultView extends PureView {
 
 		//TODO: create a Link view type to render the actual link
 		//TODO: show all rels
-		var linkItems = siren.links.map(link => <li>{link.rels.first() + ": "}<SirenLinkView siren={siren} href={link.href} /></li>);
-		var linkedEntities = siren.linkedEntities.map(link => <li>{link.rels.first() + ": "}<SirenLinkView siren={siren} href={link.href} /></li>);
-		var embeddedEntities = siren.embeddedEntities.map(entity => <Panel header={"rel: " + entity.rels.toJS()}><SirenResultView siren={entity.entity} /></Panel>);
+		var linkItems = siren.links.map(link => <li>{link.rels.first() + ": "}<SirenLinkView request={request} href={link.href} /></li>);
+		var linkedEntities = siren.linkedEntities.map(link => <li>{link.rels.first() + ": "}<SirenLinkView request={request} href={link.href} /></li>);
+		var embeddedEntities = siren.embeddedEntities.map(entity => <Panel header={"rel: " + entity.rels.toJS()}><SirenResultView request={request} siren={entity.entity} /></Panel>);
 
 		var actionItems = siren.actions.map(action => <ActionView siren={siren} action={action} />);
 

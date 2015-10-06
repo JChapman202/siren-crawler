@@ -2,7 +2,6 @@ import React from 'react';
 import {PureView} from 'flux-rx';
 import {Link} from 'react-router';
 import sirenService from '../services/sirenService';
-import Siren from 'super-siren';
 import Uri from 'urijs';
 import {getUrl} from '../utilities/links';
 
@@ -11,24 +10,24 @@ class SirenLinkView extends PureView {
 		super(props);
 
 		this.state = {
-			href: getUrl(props.siren, props.href)
+			absoluteHref: getUrl(props.request, props.href)
 		};
 	}
 
 	handleClick(e) {
 		e.preventDefault();
-		sirenService.getSiren(this.state.href);
+		sirenService.getSiren(this.state.absoluteHref);
 	}
 
 	render() {
 		return (
-			<Link to={"/" + encodeURIComponent(this.state.href)}>{this.state.href}</Link>
+			<Link to={"/" + encodeURIComponent(this.state.absoluteHref)}>{this.props.href}</Link>
 		);
 	}
 
 	static get defaultProps() {
 		return {
-			siren: Siren.empty,
+			request: null,
 			href: '/'
 		};
 	}

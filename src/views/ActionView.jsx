@@ -33,7 +33,7 @@ class ActionView extends PureView {
 
 	render() {
 		var action = this.props.action;
-		var formItems = this.state.fields.map(field => <Input type={field.type} label={field.title} onChange={this.onFieldChange.bind(this, field)} value={field.value} />);
+		var formItems = this.state.fields.map(field => <Input type={field.type} label={field.title || field.name} onChange={this.onFieldChange.bind(this, field)} value={field.value} />);
 
 		return (
 			<Panel header={action.name}>

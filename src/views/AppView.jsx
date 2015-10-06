@@ -10,11 +10,15 @@ class AppView extends PureView {
 	render() {
 		return (
 			<div className='app-view'>
-				<PageHeader>Siren Crawler</PageHeader>
-				<RequestHistoryView />
-				<GlobalHeadersView />
-				<UrlView history={this.props.history} getHref={this.props.params.getHref} />
-				<RequestView />
+				<PageHeader className='app-view-header'>Siren Crawler</PageHeader>
+				<div className='app-view-body'>
+					<RequestHistoryView />
+					<div className='app-view-body-main'>
+						<GlobalHeadersView />
+						<UrlView history={this.props.history} getHref={this.props.params.getHref} />
+						<RequestView />
+					</div>
+				</div>
 			</div>
 		);
 	}

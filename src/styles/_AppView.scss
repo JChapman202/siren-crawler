@@ -1,8 +1,18 @@
 .app-view {
-	.page-header {
+	display: flex;
+	flex-direction: column;
+
+	&-header {
 		margin-top: 0px;
 		margin-bottom: 0px;
 		height: 100px;
 	}
-}
 
+	&-body {
+		flex-direction: row;
+
+		&-main {
+			flex-direction: column;
+		}
+	}
+}

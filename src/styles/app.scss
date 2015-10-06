@@ -12,7 +12,8 @@ $panel-bg: $body-bg;
 @import 'bootstrap';
 @import 'font-awesome';
 
-body {
+body, .viewport {
+	height: 100%;
 	width: 100%;
 }
 
