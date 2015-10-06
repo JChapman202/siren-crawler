@@ -1,10 +1,21 @@
 $fa-font-path: '/fonts';
 
-@import "bootstrap";
-@import "font-awesome";
+$body-bg: #fff;
+$text-color: #3B3A35;
+$accent-text: #FB6648;
+$accent-background: #5E3448;
+$other-text: #20457C;
+
+$panel-bg: $body-bg;
+
+
+@import 'bootstrap';
+@import 'font-awesome';
 
 body {
 	width: 100%;
 }
 
-@import "./SirenResultView";
+@import './AppView';
+@import './SirenResultView';
+

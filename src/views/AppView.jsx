@@ -9,7 +9,7 @@ import RequestHistoryView from './RequestHistoryView';
 class AppView extends PureView {
 	render() {
 		return (
-			<div>
+			<div className='app-view'>
 				<PageHeader>Siren Crawler</PageHeader>
 				<RequestHistoryView />
 				<GlobalHeadersView />
