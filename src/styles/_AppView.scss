@@ -5,7 +5,7 @@
 	&-header {
 		margin-top: 0px;
 		margin-bottom: 0px;
-		height: 100px;
+		flex: 0 0 100px;
 	}
 
 	&-body {
@@ -16,12 +16,14 @@
 			display: flex;
 			flex-direction: column;
 			flex: 1 1 auto;
+			overflow-y: auto;
 		}
 
 		&-main {
 			display: flex;
 			flex-direction: column;
 			flex: 3 1 auto;
+			overflow-y: auto;
 		}
 	}
 }
