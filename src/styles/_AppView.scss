@@ -1,6 +1,7 @@
 .app-view {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 
 	&-header {
 		margin-top: 0px;
@@ -11,18 +12,19 @@
 	&-body {
 		display: flex;
 		flex-direction: row;
+		flex: 1 0;
 
 		&-left {
 			display: flex;
 			flex-direction: column;
-			flex: 1 1 auto;
+			flex: 1;
 			overflow-y: auto;
 		}
 
 		&-main {
 			display: flex;
 			flex-direction: column;
-			flex: 3 1 auto;
+			flex: 2;
 			overflow-y: auto;
 		}
 	}

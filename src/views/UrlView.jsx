@@ -36,7 +36,7 @@ class UrlView extends PureView {
 		e.preventDefault();
 
 		//if we are already on this URL, clicking submit acts as a refresh
-		sirenService.getSiren(this.props.getHref);
+		sirenService.getSiren(this.state.url);
 
 		if (this.state.url !== this.props.getHref) {
 			this.props.history.pushState(null, '/' + encodeURIComponent(this.state.url));
