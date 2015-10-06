@@ -3,6 +3,7 @@ import {PureView} from 'flux-rx';
 import {Panel} from 'react-bootstrap';
 import requestStore from '../stores/requestStore';
 import SirenResultView from './SirenResultView';
+import Siren from 'super-siren';
 
 class RequestView extends PureView {
 	constructor() {
@@ -26,11 +27,16 @@ class RequestView extends PureView {
 		var body = <i className='fa fa-spinner fa-pulse' />
 
 		if (request.status.complete) {
-			body = <SirenResultView siren={request.result.body} />
+			if (request.result && request.result.body instanceof Siren) {
+				body = <SirenResultView siren={request.result.body} />
+			}
+			else {
+				body = null;
+			}
 		}
 
 		return (
-			<Panel header={request.method + ' ' + request.href + ' (' + request.duration + ' ms) '}>
+			<Panel header={request.method + ' ' + request.href + ' - ' + request.resultCode + ' (' + request.duration + ' ms)'}>
 				{body}
 			</Panel>
 		);

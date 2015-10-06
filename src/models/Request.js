@@ -18,6 +18,10 @@ class Request extends Immutable.Record({
 		});
 	}
 
+	get resultCode() {
+		return this.result ? this.result.statusCode : null;
+	}
+
 	get duration() {
 		var returnVal = null;
 
@@ -46,6 +50,7 @@ class Request extends Immutable.Record({
 		return this.withMutations(map => {
 			map.merge({
 				status: requestStatus.failed,
+				result: failureMessage.error.response,
 				responseTime: new Date()
 			});
 		});

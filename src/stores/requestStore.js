@@ -43,7 +43,9 @@ function processResult(resultMessage) {
 }
 
 function processFailure(failureMessage) {
-
+	return {
+		currentRequest: this._state.get('currentRequest').processFailure(failureMessage)
+	};
 }
 
 export default new RequestStore();
