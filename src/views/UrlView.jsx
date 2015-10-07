@@ -2,6 +2,7 @@ import React from 'react';
 import {PureView} from 'flux-rx';
 import {Input, Button} from 'react-bootstrap';
 import sirenService from '../services/sirenService';
+import requestStore from '../stores/requestStore';
 
 class UrlView extends PureView {
 	constructor(props) {
@@ -23,7 +24,7 @@ class UrlView extends PureView {
 			url: newProps.getHref
 		});
 
-		if (newProps.getHref && newProps.getHref !== this.state.url) {
+		if (!requestStore.currentRequest || requestStore.currentRequest.href !== newProps.getHref) {
 			sirenService.getSiren(newProps.getHref);
 		}
 	}

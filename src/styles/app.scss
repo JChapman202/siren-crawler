@@ -7,10 +7,15 @@ $accent-background: #5E3448;
 $other-text: #20457C;
 
 $panel-bg: $body-bg;
+$panel-body-padding: .5rem;
 
 
 @import 'bootstrap';
 @import 'font-awesome';
+
+html {
+	font-size: 12px;
+}
 
 body, .viewport {
 	position: absolute;
@@ -21,5 +26,5 @@ body, .viewport {
 }
 
 @import './AppView';
+@import './RequestHistoryView';
 @import './SirenResultView';
-

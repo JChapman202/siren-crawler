@@ -19,24 +19,41 @@ class RequestHistoryView extends PureView {
 	}
 
 	render() {
-		var items = this.state.requests.map(item =>
-			<li>
-				<Link to={'/' + encodeURIComponent(item.href)}>
-					<span className='request-method'>{item.method}</span>
-					<span className='request-href'>{item.href}</span>
-				</Link>
-			</li>
+		var items = this.state.requests.map(item => {
+				var className = '';
+				if (item.method.toLowerCase() === 'get') {
+					className = 'clickable';
+				}
+
+				return (
+					<tr className={className} onClick={onClick.bind(this, item)}>
+						<td className='method-col'>
+							<span className='request-method'>{item.method}</span>
+						</td>
+						<td className='href-col'>
+							<span className='request-href'>{item.href}</span>
+						</td>
+					</tr>
+				);
+			}
 		);
 
 		return (
 			<div className='request-history-view'>
-				<Panel className='history-panel' header='History'>
-					<ul>
-						{items}
-					</ul>
-				</Panel>
+				<div className='request-history-view-header'>
+					History
+				</div>
+				<table className='request-history-view-grid'>
+					{items}
+				</table>
 			</div>
 		);
+	}
+}
+
+function onClick(item) {
+	if (item.method && item.method.toLowerCase() === 'get') {
+		this.props.history.pushState(null, '/' + encodeURIComponent(item.href));
 	}
 }
 

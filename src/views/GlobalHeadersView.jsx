@@ -30,7 +30,7 @@ class GlobalHeadersView extends PureView {
 
 		return (
 			<div className='global-headers-view'>
-				<Table striped bordered condensed>
+				<Table striped bordered condensed table-sm>
 					<thead>
 						<th className='name-column'>
 							Name

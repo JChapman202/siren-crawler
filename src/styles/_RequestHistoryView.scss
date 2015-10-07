@@ -1,0 +1,31 @@
+.request-history-view {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+
+	&-header {
+		padding: .25rem;
+		font-size: 1.5rem;
+		color: #333;
+		background: #f3f3f3;
+	}
+
+	&-grid {
+		flex: 1;
+
+		width: 100%;
+
+		.clickable {
+			color: $link-color;
+			cursor: pointer;
+		}
+
+		.method-col {
+			width: 5rem;
+		}
+
+		td {
+			padding: 0 .5rem 0 .5rem;
+		}
+	}
+}
