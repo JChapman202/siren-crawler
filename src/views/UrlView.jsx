@@ -24,7 +24,7 @@ class UrlView extends PureView {
 			url: newProps.getHref
 		});
 
-		if (!requestStore.currentRequest || requestStore.currentRequest.href !== newProps.getHref) {
+		if (!requestStore.currentRequest || requestStore.currentRequest.href !== newProps.getHref || requestStore.currentRequest.method.toLowerCase() !== 'get') {
 			sirenService.getSiren(newProps.getHref);
 		}
 	}

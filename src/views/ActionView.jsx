@@ -1,6 +1,6 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
-import {Panel, Input, ButtonToolbar, ButtonInput} from 'react-bootstrap';
+import {Panel, Input, ButtonToolbar, Button} from 'react-bootstrap';
 import Siren, {Action} from 'super-siren';
 import sirenService from '../services/sirenService';
 
@@ -40,8 +40,8 @@ class ActionView extends PureView {
 				<form ref="form" onSubmit={this.onSubmit.bind(this)}>
 					{formItems}
 					<ButtonToolbar>
-						<ButtonInput type="reset" value="Clear" />
-						<ButtonInput type="submit" value="Submit" />
+						<Button type="reset">Clear</Button>
+						<Button type="submit">Submit</Button>
 					</ButtonToolbar>
 				</form>
 			</Panel>
