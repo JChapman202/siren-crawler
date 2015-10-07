@@ -1,6 +1,6 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
-import {Input, Button} from 'react-bootstrap';
+import {Button, ButtonToolbar} from 'react-bootstrap';
 import sirenService from '../services/sirenService';
 import requestStore from '../stores/requestStore';
 
@@ -29,8 +29,8 @@ class UrlView extends PureView {
 		}
 	}
 
-	handleChange() {
-		this.setState({url: this.refs.input.getValue()});
+	handleChange(e) {
+		this.setState({url: e.target.value});
 	}
 
 	handleClick(e) {
@@ -46,17 +46,17 @@ class UrlView extends PureView {
 
 	render() {
 		return (
-			<div>
-				<Input
+			<div className='url-view'>
+				<input
+					className='form-control'
 					value={this.state.url}
-					type="text"
-					label="URL"
-					placeholder="enter URL"
-					ref="input"
-					labelClassName="label"
+					type='text'
+					placeholder='enter URL'
 					onChange={this.handleChange.bind(this)}
 				/>
-				<Button bsStyle="primary" onClick={this.handleClick.bind(this)}>Submit</Button>
+				<ButtonToolbar>
+					<Button bsSize='small' bsStyle='primary' onClick={this.handleClick.bind(this)}>Submit</Button>
+				</ButtonToolbar>
 			</div>
 		);
 	}

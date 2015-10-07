@@ -40,12 +40,11 @@ class RequestHistoryView extends PureView {
 
 		return (
 			<div className='request-history-view'>
-				<div className='request-history-view-header'>
-					History
-				</div>
-				<table className='request-history-view-grid'>
-					{items}
-				</table>
+				<Panel className='history-panel' header='History'>
+					<table className='request-history-view-grid'>
+						{items}
+					</table>
+				</Panel>
 			</div>
 		);
 	}

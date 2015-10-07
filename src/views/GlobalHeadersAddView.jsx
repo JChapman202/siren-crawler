@@ -1,6 +1,6 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
-import {Input, Button} from 'react-bootstrap';
+import {Button, ButtonToolbar} from 'react-bootstrap';
 import globalHeadersService from '../services/globalHeadersService';
 
 /**
@@ -39,13 +39,15 @@ class GlobalHeadersAddView extends PureView {
 		return (
 			<tr>
 				<td>
-					<Input type='text' onChange={this.onNameChange.bind(this)} value={this.state.name} />
+					<input type='text' className='form-control' onChange={this.onNameChange.bind(this)} value={this.state.name} />
 				</td>
 				<td>
-					<Input type='text' onChange={this.onValueChange.bind(this)} value={this.state.value} />
+					<input type='text' className='form-control' onChange={this.onValueChange.bind(this)} value={this.state.value} />
 				</td>
 				<td>
-					<Button onClick={this.onSubmit.bind(this)} disabled={!this.state.name}>Add</Button>
+					<ButtonToolbar>
+						<Button onClick={this.onSubmit.bind(this)} disabled={!this.state.name}>Add</Button>
+					</ButtonToolbar>
 				</td>
 			</tr>
 		);

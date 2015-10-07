@@ -25,6 +25,15 @@ body, .viewport {
 	padding: 0;
 }
 
+.table {
+	margin-bottom: 0px;
+}
+
+.panel {
+	margin-bottom: 5px;
+}
+
 @import './AppView';
 @import './RequestHistoryView';
 @import './SirenResultView';
+@import './UrlView';

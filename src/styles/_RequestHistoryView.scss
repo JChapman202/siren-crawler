@@ -3,11 +3,18 @@
 	display: flex;
 	flex-direction: column;
 
-	&-header {
-		padding: .25rem;
-		font-size: 1.5rem;
-		color: #333;
-		background: #f3f3f3;
+	.panel {
+		flex: 1;
+		margin-bottom: 0px;
+
+		&-heading {
+			flex: 0;
+		}
+
+		&-body {
+			flex: 1;
+			overflow-y: auto;
+		}
 	}
 
 	&-grid {
@@ -18,6 +25,10 @@
 		.clickable {
 			color: $link-color;
 			cursor: pointer;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 
 		.method-col {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
-import {Table, Input, Button} from 'react-bootstrap';
+import {Table, Button, ButtonToolbar} from 'react-bootstrap';
 import globalHeadersService from '../services/globalHeadersService';
 import globalHeadersStore from '../stores/globalHeadersStore';
 import GlobalHeadersAddView from './GlobalHeadersAddView';
@@ -22,9 +22,13 @@ class GlobalHeadersView extends PureView {
 	render() {
 		var rows = this.state.headers.map(header => (
 			<tr>
-				<td><Input type='text' value={header.key} onChange={onKeyChange.bind(this, header)} /></td>
-				<td><Input type='text' value={header.value} onChange={onValueChange.bind(this, header)} /></td>
-				<td><Button onClick={onRemove.bind(this, header)}>Remove</Button></td>
+				<td><input type='text' className='form-control' value={header.key} onChange={onKeyChange.bind(this, header)} /></td>
+				<td><input type='text' className='form-control' value={header.value} onChange={onValueChange.bind(this, header)} /></td>
+				<td className='action-col'>
+					<ButtonToolbar>
+						<Button onClick={onRemove.bind(this, header)}>Remove</Button>
+					</ButtonToolbar>
+				</td>
 			</tr>
 		));
 
