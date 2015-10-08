@@ -33,8 +33,10 @@ body, .viewport {
 	margin-bottom: 5px;
 }
 
+@import './ActionView';
 @import './AppView';
 @import './RequestHistoryView';
+@import './SirenEntitiesView';
 @import './SirenResultView';
 @import './SirenPropertiesView';
 @import './UrlView';

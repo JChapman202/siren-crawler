@@ -4,7 +4,11 @@ import jsonMarkup from 'json-markup';
 
 class RawResponseView extends PureView {
 	render() {
-		var body = this.props.result.text;
+		var body = null;
+
+		if (this.props.result) {
+			body = this.props.result.text;
+		}
 
 		try {
 			var json = JSON.parse(body);

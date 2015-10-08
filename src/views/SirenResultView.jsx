@@ -3,8 +3,10 @@ import {PureView} from 'flux-rx';
 import Siren from 'super-siren';
 import {Panel} from 'react-bootstrap';
 import ActionView from './ActionView';
+import SirenEntitiesView from './SirenEntitiesView';
 import SirenLinkView from './SirenLinkView';
 import SirenPropertiesView from './SirenPropertiesView';
+import {formatArray} from '../utilities/format';
 
 class SirenResultView extends PureView {
 	render() {
@@ -13,12 +15,7 @@ class SirenResultView extends PureView {
 
 		//TODO: perhaps tables would make more sense than lis?
 
-		var classItems = '[]';
-
-		if (!siren.classes.isEmpty()) {
-			classItems = siren.classes.reduce((res, cls) => res + cls + ', ', '[');
-			classItems = classItems.substring(0, classItems.length - 2) + ']';
-		}
+		var classItems = formatArray(siren.classes);
 
 		var selfLinkItem = null;
 		if (siren.selfLink) {
@@ -27,23 +24,24 @@ class SirenResultView extends PureView {
 
 		//TODO: create a Link view type to render the actual link
 		//TODO: show all rels
-		var linkItems = siren.links.filter(link => link !== siren.selfLink).map(link => <li>{link.rels.first() + ": "}<SirenLinkView request={request} href={link.href} /></li>);
-		var linkedEntities = siren.linkedEntities.map(link => <li>{link.rels.first() + ": "}<SirenLinkView request={request} href={link.href} /></li>);
-		var embeddedEntities = siren.embeddedEntities.map(entity => <Panel header={"rel: " + entity.rels.toJS()}><SirenResultView request={request} siren={entity.entity} /></Panel>);
+		var linkItems = siren.links.filter(link => link !== siren.selfLink).map(link => <li>{formatArray(link.rels) + ": "}<SirenLinkView request={request} href={link.href} /></li>);
+		var linkedEntities = siren.linkedEntities.map(link => <li>{formatArray(link.rels) + ": "}<SirenLinkView request={request} href={link.href} /></li>);
+		var embeddedEntities = siren.embeddedEntities.map(entity => <Panel header={"rel: " + formatArray(entity.rels)}><SirenResultView request={request} siren={entity.entity} /></Panel>);
 
 		var actionItems = siren.actions.map(action => <ActionView siren={siren} action={action} />);
 
 		return (
 			<div className="siren-result-view">
 				<div>
-					<div className='siren-result-view-selfLink'>
-						{selfLinkItem}
-					</div>
-					<div className='siren-result-view-classes'>
+					<span className='siren-result-view-classes'>
 						{classItems}
-					</div>
+					</span>
+					<span className='siren-result-view-selfLink'>
+						{selfLinkItem}
+					</span>
 				</div>
 				<SirenPropertiesView properties={siren.properties} />
+				<SirenEntitiesView request={request} entities={siren.entities} />
 				{
 					!linkItems.isEmpty() &&
 					<Panel header="Links">
@@ -53,22 +51,8 @@ class SirenResultView extends PureView {
 					</Panel>
 				}
 				{
-					!linkedEntities.isEmpty() &&
-					<Panel header="Linked Entities">
-						<ul>
-							{linkedEntities}
-						</ul>
-					</Panel>
-				}
-				{
-					!embeddedEntities.isEmpty() &&
-					<Panel header="Embedded Entities">
-						{embeddedEntities}
-					</Panel>
-				}
-				{
 					!actionItems.isEmpty() &&
-					<Panel header="Actions">
+					<Panel className='siren-result-view-actions' header="Actions">
 						{actionItems}
 					</Panel>
 				}
