@@ -2,10 +2,12 @@
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
+	align-items: stretch;
 
 	&-item {
+		border: 1px #000;
 		display: flex;
-		flex: 1 1 10rem;
+		flex: 1 1 20rem;
 
 		&-rels {
 			font-weight: 600;

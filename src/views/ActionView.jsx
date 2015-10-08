@@ -28,7 +28,7 @@ class ActionView extends PureView {
 			data[field.name] = field.value
 		});
 
-		sirenService.submitAction(this.props.siren, this.props.action, data);
+		sirenService.submitAction(this.props.request, this.props.action, data);
 	}
 
 	render() {
@@ -52,7 +52,6 @@ class ActionView extends PureView {
 
 	static get defaultProps() {
 		return {
-			siren: Siren.empty,
 			action: Action.empty
 		}
 	}

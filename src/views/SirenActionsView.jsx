@@ -6,7 +6,7 @@ import ActionView from './ActionView';
 
 class SirenActionsView extends PureView {
 	render() {
-		var actions = this.props.actions.map(action => <ActionView siren={this.props.siren} action={action} />);
+		var actions = this.props.actions.map(action => <ActionView request={this.props.request} action={action} />);
 
 		return (
 			<div className='siren-actions-view'>
@@ -17,7 +17,6 @@ class SirenActionsView extends PureView {
 
 	static get defaultProps() {
 		return {
-			siren: Siren.empty,
 			actions: new Immutable.List()
 		};
 	}

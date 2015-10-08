@@ -10,12 +10,12 @@ class SirenPropertiesView extends PureView {
 
 		var properties = this.props.properties.map((value, key) =>
 			<div className='siren-properties-view-property'>
-				<span className='siren-properties-view-property-name'>
+				<div className='siren-properties-view-property-name'>
 					{key}:
-				</span>
-				<span className='siren-properties-view-property-value'>
+				</div>
+				<div className='siren-properties-view-property-value'>
 					{value}
-				</span>
+				</div>
 			</div>
 		);
 

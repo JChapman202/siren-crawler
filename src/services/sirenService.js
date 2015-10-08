@@ -12,8 +12,11 @@ class SirenService {
 		processRequest(requestMessage, Siren.get(href));
 	}
 
-	submitAction(siren, action, data) {
-		var requestMessage = new RequestMessage(action.method, getUrl(siren, action.href), data);
+	submitAction(originalRequest, action, data) {
+		var requestMessage = new RequestMessage(action.method, getUrl(originalRequest, action.href), data);
+
+		//temporary hack until super-siren supports setting href
+		var action = action.withMutations(map => map.set('href', requestMessage.requestHref));
 
 		processRequest(requestMessage, action.perform(data));
 	}

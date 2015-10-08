@@ -76,7 +76,7 @@ class SirenResultView extends PureView {
 				}
 				{
 					!siren.actions.isEmpty() &&
-					<SirenActionsView siren={siren} request={request} actions={siren.actions} />
+					<SirenActionsView request={request} actions={siren.actions} />
 				}
 			</div>
 		)
