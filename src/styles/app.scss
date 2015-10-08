@@ -33,10 +33,20 @@ body, .viewport {
 	margin-bottom: 5px;
 }
 
-@import './ActionView';
+@mixin background-gradient($direction, $fromColor, $toColor) {
+	/*note safar direction is actually backwards will need to fix*/
+	background: -webkit-linear-gradient($direction, $fromColor, $toColor); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient($direction, $fromColor, $toColor); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient($direction, $fromColor, $toColor); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to $direction, $fromColor , $toColor); /* Standard syntax */
+}
+
 @import './AppView';
+@import './RequestView';
 @import './RequestHistoryView';
+@import './SirenActionsView';
 @import './SirenEntitiesView';
+@import './SirenLinksView';
 @import './SirenResultView';
 @import './SirenPropertiesView';
 @import './UrlView';

@@ -1,0 +1,19 @@
+.siren-links-view {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+
+	&-item {
+		display: flex;
+		flex: 1 1 10rem;
+
+		&-rels {
+			font-weight: 600;
+			width: 10rem;
+		}
+
+		&-link {
+			text-align: left;
+		}
+	}
+}

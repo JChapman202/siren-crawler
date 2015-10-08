@@ -3,8 +3,10 @@ import {PureView} from 'flux-rx';
 import Siren from 'super-siren';
 import {Panel} from 'react-bootstrap';
 import ActionView from './ActionView';
+import SirenActionsView from './SirenActionsView';
 import SirenEntitiesView from './SirenEntitiesView';
 import SirenLinkView from './SirenLinkView';
+import SirenLinksView from './SirenLinksView';
 import SirenPropertiesView from './SirenPropertiesView';
 import {formatArray} from '../utilities/format';
 
@@ -13,48 +15,68 @@ class SirenResultView extends PureView {
 		var siren = this.props.siren;
 		var request = this.props.request;
 
-		//TODO: perhaps tables would make more sense than lis?
-
-		var classItems = formatArray(siren.classes);
-
 		var selfLinkItem = null;
 		if (siren.selfLink) {
 			selfLinkItem = <SirenLinkView request={request} href={siren.selfLink.href} />
 		}
 
-		//TODO: create a Link view type to render the actual link
-		//TODO: show all rels
-		var linkItems = siren.links.filter(link => link !== siren.selfLink).map(link => <li>{formatArray(link.rels) + ": "}<SirenLinkView request={request} href={link.href} /></li>);
-		var linkedEntities = siren.linkedEntities.map(link => <li>{formatArray(link.rels) + ": "}<SirenLinkView request={request} href={link.href} /></li>);
-		var embeddedEntities = siren.embeddedEntities.map(entity => <Panel header={"rel: " + formatArray(entity.rels)}><SirenResultView request={request} siren={entity.entity} /></Panel>);
-
-		var actionItems = siren.actions.map(action => <ActionView siren={siren} action={action} />);
+		var links = siren.links.filter(link => link !== siren.selfLink);
 
 		return (
 			<div className="siren-result-view">
 				<div>
-					<span className='siren-result-view-classes'>
-						{classItems}
-					</span>
 					<span className='siren-result-view-selfLink'>
 						{selfLinkItem}
 					</span>
 				</div>
-				<SirenPropertiesView properties={siren.properties} />
-				<SirenEntitiesView request={request} entities={siren.entities} />
 				{
-					!linkItems.isEmpty() &&
-					<Panel header="Links">
-						<ul>
-							{linkItems}
-						</ul>
-					</Panel>
+					!siren.classes.isEmpty() &&
+					<div className='section-header'>
+						Classes
+					</div>
 				}
 				{
-					!actionItems.isEmpty() &&
-					<Panel className='siren-result-view-actions' header="Actions">
-						{actionItems}
-					</Panel>
+					!siren.classes.isEmpty() && formatArray(siren.classes)
+				}
+				{
+					!siren.properties.isEmpty() &&
+					<div className='section-header'>
+						Properties
+					</div>
+				}
+				{
+					!siren.properties.isEmpty() &&
+					<SirenPropertiesView properties={siren.properties} />
+				}
+				{
+					!siren.entities.isEmpty() &&
+					<div className='section-header'>
+						Entities
+					</div>
+				}
+				{
+					!siren.entities.isEmpty() &&
+					<SirenEntitiesView request={request} entities={siren.entities} />
+				}
+				{
+					!links.isEmpty() &&
+					<div className='section-header'>
+						Links
+					</div>
+				}
+				{
+					!links.isEmpty() &&
+					<SirenLinksView request={request} links={links} />
+				}
+				{
+					!siren.actions.isEmpty() &&
+					<div className='section-header'>
+						Actions
+					</div>
+				}
+				{
+					!siren.actions.isEmpty() &&
+					<SirenActionsView siren={siren} request={request} actions={siren.actions} />
 				}
 			</div>
 		)

@@ -19,7 +19,13 @@ class SirenEntitiesView extends PureView {
 							{formatArray(entity.rels)}
 						</td>
 						<td>
+							{formatArray(entity.classes)}
+						</td>
+						<td>
 							<SirenLink request={this.props.request} href={entity.href} />
+						</td>
+						<td>
+							&lt;linked entity&gt;
 						</td>
 					</tr>
 			}
@@ -30,14 +36,14 @@ class SirenEntitiesView extends PureView {
 							{formatArray(entity.rels)}
 						</td>
 						<td>
-							<div>
-								<span className='siren-result-view-classes'>
-									{formatArray(entity.entity.classes)}
-								</span>
-								<span className='siren-result-view-selfLink'>
-									{!!entity.entity.selfLink && <SirenLink request={this.props.request} href={entity.entity.selfLink.href} />}
-								</span>
-							</div>
+							{formatArray(entity.entity.classes)}
+						</td>
+						<td>
+							<span className='siren-result-view-selfLink'>
+								{!!entity.entity.selfLink && <SirenLink request={this.props.request} href={entity.entity.selfLink.href} />}
+							</span>
+						</td>
+						<td>
 							<SirenPropertiesView properties={entity.entity.properties} />
 						</td>
 					</tr>
@@ -52,6 +58,12 @@ class SirenEntitiesView extends PureView {
 					<thead>
 						<th className='rels-column'>
 							Rels
+						</th>
+						<th className='classes-column'>
+							Classes
+						</th>
+						<th className='link-column'>
+							Link
 						</th>
 						<th className='value-column'>
 							Entity

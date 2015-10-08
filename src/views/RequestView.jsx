@@ -37,9 +37,11 @@ class RequestView extends PureView {
 		}
 
 		return (
-			<Panel header={request.method + ' ' + request.href + ' - ' + request.resultCode + ' (' + request.duration + ' ms)'}>
-				{body}
-			</Panel>
+			<div className='request-view'>
+				<Panel header={request.method + ' ' + request.href + ' - ' + request.resultCode + ' (' + request.duration + ' ms)'}>
+					{body}
+				</Panel>
+			</div>
 		);
 	}
 }

@@ -6,6 +6,14 @@
 	}
 
 	&-selfLink {
-		margin-left: .5rem;
+
+	}
+
+	.section-header {
+		font-size: 1.5rem;
+		margin: .5rem  -5px .5rem -5px;
+		padding: .5rem .5rem .5rem .5rem;
+
+		@include background-gradient(right, #f3f3fd, #ffffff);
 	}
 }

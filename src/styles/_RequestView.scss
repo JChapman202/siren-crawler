@@ -1,0 +1,15 @@
+.request-view {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+
+	> .panel {
+		flex: 1;
+		margin-bottom: 0px;
+
+		> .panel-body {
+			padding: 5px 5px 5px 5px;
+			overflow-y: auto;
+		}
+	}
+}

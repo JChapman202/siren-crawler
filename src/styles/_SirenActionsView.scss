@@ -1,0 +1,10 @@
+.siren-actions-view {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+
+	.action-view {
+		display: flex;
+		flex: 1 0;
+	}
+}
