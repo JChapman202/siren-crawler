@@ -43,7 +43,8 @@ gulp.task('sass', ['fonts'], function() {
 });
 
 gulp.task('html', function() {
-	return gulp.src(['src/**/*.html'])
+	//TODO: clean up json-markup style.css location to be it's own task and rename it to be jsonMarkup.css
+	return gulp.src(['src/**/*.html', 'node_modules/json-markup/style.css'])
 		.pipe(gulp.dest('site'));
 });
 

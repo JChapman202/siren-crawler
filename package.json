@@ -57,6 +57,7 @@
     "history": "^1.11.1",
     "immutable": "^3.7.5",
     "jQuery": "^1.7.4",
+    "json-markup": "^0.1.6",
     "react": "^0.13.3",
     "react-bootstrap": "^0.25.2",
     "react-router": "^1.0.0-beat3",

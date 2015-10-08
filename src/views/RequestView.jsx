@@ -3,6 +3,7 @@ import {PureView} from 'flux-rx';
 import {Panel} from 'react-bootstrap';
 import requestStore from '../stores/requestStore';
 import SirenResultView from './SirenResultView';
+import RawResponseView from './RawResponseView';
 import Siren from 'super-siren';
 
 class RequestView extends PureView {
@@ -31,7 +32,7 @@ class RequestView extends PureView {
 				body = <SirenResultView request={request} siren={request.result.body} />
 			}
 			else {
-				body = null;
+				body = <RawResponseView request={request} result={request.result} />;
 			}
 		}
 
