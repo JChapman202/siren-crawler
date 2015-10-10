@@ -14,11 +14,6 @@ class SirenLinkView extends PureView {
 		};
 	}
 
-	handleClick(e) {
-		e.preventDefault();
-		sirenService.getSiren(this.state.absoluteHref);
-	}
-
 	render() {
 		return (
 			<Link to={"/" + encodeURIComponent(this.state.absoluteHref)}>{this.props.href}</Link>
