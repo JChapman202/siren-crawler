@@ -72,7 +72,7 @@ gulp.task('serve', function() {
 			fallback: '/index.html',
 			host: '0.0.0.0',
 			livereload: true,
-			port: 8080,
+			port: 8888,
 			proxies: [
 				{
 					source: '/api',

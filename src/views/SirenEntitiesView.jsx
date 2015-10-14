@@ -9,7 +9,7 @@ import {formatArray} from '../utilities/format';
 
 class SirenEntitiesView extends PureView {
 	render() {
-		var rows = this.props.entities.map(entity => {
+		var rows = this.props.entities.sortBy(entity => entity.href || entity.entity.selfLink).map(entity => {
 			var returnVal = null;
 
 			if (entity instanceof Siren.LinkedSubEntity) {

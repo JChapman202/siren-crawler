@@ -14,7 +14,7 @@ class SirenPropertiesView extends PureView {
 					{key}:
 				</div>
 				<div className='siren-properties-view-property-value'>
-					{value}
+					{JSON.stringify(value)}
 				</div>
 			</div>
 		);
