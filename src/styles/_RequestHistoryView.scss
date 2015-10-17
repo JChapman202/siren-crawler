@@ -35,6 +35,16 @@
 			width: 4rem;
 		}
 
+		.href-col {
+			&-path {
+
+			}
+
+			&-host {
+				color: #b6b6b4;
+			}
+		}
+
 		td {
 			padding: 0 .5rem 0 .5rem;
 		}

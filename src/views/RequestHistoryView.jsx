@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import {Panel} from 'react-bootstrap';
 import {PureView} from 'flux-rx';
 import requestStore from '../stores/requestStore';
+import Uri from 'urijs';
 
 class RequestHistoryView extends PureView {
 	constructor() {
@@ -25,13 +26,20 @@ class RequestHistoryView extends PureView {
 					className = 'clickable';
 				}
 
+				var url = new Uri(item.href);
+
 				return (
 					<tr className={className} onClick={onClick.bind(this, item)}>
 						<td className='method-col'>
 							<span className='request-method'>{item.method}</span>
 						</td>
 						<td className='href-col'>
-							<span className='request-href'>{item.href}</span>
+							<div className='href-col-path'>
+								{url.resource()}
+							</div>
+							<div className='href-col-host'>
+								{url.protocol() + '://' + url.host()}
+							</div>
 						</td>
 					</tr>
 				);

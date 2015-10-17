@@ -2,7 +2,6 @@ import React from 'react';
 import {PureView} from 'flux-rx';
 import {Link} from 'react-router';
 import sirenService from '../services/sirenService';
-import Uri from 'urijs';
 import {getUrl} from '../utilities/links';
 
 class SirenLinkView extends PureView {
