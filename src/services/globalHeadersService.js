@@ -21,17 +21,60 @@ class GlobalHeaderService {
 		Siren.Client.removeHeader(header.key);
 		Siren.Client.addHeader(key, value);
 
+		saveHeaders();
 		dispatchCurrentHeaders();
 	}
 
 	removeHeader(header) {
 		Siren.Client.removeHeader(header.key);
+		saveHeaders();
 		dispatchCurrentHeaders();
 	}
 
 	addHeader(key, value) {
 		Siren.Client.addHeader(key, value);
+		saveHeaders();
 		dispatchCurrentHeaders();
+	}
+
+	/**
+	 * Restores the list of headers from localStorage.
+	 * Note that this only works if localStorage is available.
+	 * @returns {Void}	undefined
+	 */
+	restoreHeaders() {
+		if (localStorage) {
+			var headersJson = localStorage.getItem(storageKeys.headers());
+
+			if (headersJson) {
+				var headers = JSON.parse(headersJson);
+
+				//Clear all existing headers
+				Siren.Client.globalHeaders.forEach((value, key) => {
+					Siren.Client.removeHeader(key);
+				});
+
+				//Add stored headers
+				for (var key in headers) {
+					Siren.Client.addHeader(key, headers[key]);
+				}
+
+				dispatchCurrentHeaders();
+			}
+		}
+	}
+}
+
+/**
+ * Saves the current Siren headers to local storage for later retrieval
+ *
+ * @returns {Void} undefined
+ */
+function saveHeaders() {
+	if (localStorage) {
+		var headers = Siren.Client.globalHeaders.toJS();
+
+		localStorage.setItem(storageKeys.headers(), JSON.stringify(headers));
 	}
 }
 
@@ -42,5 +85,11 @@ function dispatchCurrentHeaders() {
 
 	dispatcher.dispatch(new GlobalHeadersLoadedMessage(headers));
 }
+
+var storageKeys = {
+	headers: () => {
+		return 'headers';
+	}
+};
 
 export default new GlobalHeaderService();
