@@ -57,13 +57,13 @@ gulp.task('build', ['html', 'sass'], function() {
 	return browserify('src/app.jsx', options)
 		.transform(babelify.configure({experimental: false}))
 		.bundle()
-		.on('error', function(e) { util.log(util.colors.blue('[BROWSERIFY] ') + util.colors.red(e.toString())) })
+		.on('error', function(e) { util.log(util.colors.blue('[BROWSERIFY] ') + util.colors.red(e.toString())); })
 		.pipe(source('app.js'))
 		.pipe(buffer())
 		.pipe(sourcemaps.init({ loadMaps: true }))
 		.pipe(rename('app.js'))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('site/'))
+		.pipe(gulp.dest('site/'));
 });
 
 gulp.task('serve', function() {
