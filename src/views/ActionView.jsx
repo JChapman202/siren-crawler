@@ -3,6 +3,7 @@ import {PureView} from 'flux-rx';
 import {Panel, Input, ButtonToolbar, Button} from 'react-bootstrap';
 import Siren, {Action} from 'super-siren';
 import sirenService from '../services/sirenService';
+import {formatArray} from '../utilities/format';
 
 class ActionView extends PureView {
 	constructor(props) {
@@ -37,7 +38,7 @@ class ActionView extends PureView {
 
 		return (
 			<div className='action-view'>
-				<Panel header={action.name}>
+				<Panel header={action.name + ' ' + formatArray(action.classes)}>
 					<form ref="form" onSubmit={this.onSubmit.bind(this)}>
 						{formItems}
 						<ButtonToolbar>

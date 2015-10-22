@@ -13,6 +13,9 @@ class SirenLinksView extends PureView {
 					{formatArray(link.rels)}
 				</td>
 				<td>
+					{formatArray(link.classes)}
+				</td>
+				<td>
 					<SirenLinkView request={this.props.request} href={link.href} />
 				</td>
 			</tr>
@@ -25,6 +28,9 @@ class SirenLinksView extends PureView {
 						<tr>
 							<th className='siren-links-view-rels-col'>
 								Rels
+							</th>
+							<th className='siren-links-view-classes-col'>
+								Class
 							</th>
 							<th className='siren-links-view-link-col'>
 								Link
