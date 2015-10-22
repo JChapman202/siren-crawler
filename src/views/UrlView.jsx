@@ -33,7 +33,7 @@ class UrlView extends PureView {
 		this.setState({url: e.target.value});
 	}
 
-	handleClick(e) {
+	handleSubmit(e) {
 		e.preventDefault();
 
 		//if we are already on this URL, clicking submit acts as a refresh
@@ -47,16 +47,18 @@ class UrlView extends PureView {
 	render() {
 		return (
 			<div className='url-view'>
-				<input
-					className='form-control'
-					value={this.state.url}
-					type='text'
-					placeholder='enter URL'
-					onChange={this.handleChange.bind(this)}
-				/>
-				<ButtonToolbar>
-					<Button bsSize='small' bsStyle='primary' onClick={this.handleClick.bind(this)}>Submit</Button>
-				</ButtonToolbar>
+				<form ref='form' onSubmit={this.handleSubmit.bind(this)}>
+					<input
+						className='form-control'
+						value={this.state.url}
+						type='text'
+						placeholder='enter URL'
+						onChange={this.handleChange.bind(this)}
+					/>
+					<ButtonToolbar>
+						<Button type='submit' value='GET' bsSize='small' bsStyle='primary'>Submit</Button>
+					</ButtonToolbar>
+				</form>
 			</div>
 		);
 	}
