@@ -61,7 +61,7 @@
     "react": "^0.13.3",
     "react-bootstrap": "^0.25.2",
     "react-router": "^1.0.0-beat3",
-    "super-siren": ">=0.1.12",
+    "super-siren": ">=0.1.13",
     "urijs": "^1.16.1"
   }
 }
