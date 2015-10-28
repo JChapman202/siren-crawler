@@ -1,6 +1,7 @@
 import React from 'react';
 import {PureView} from 'flux-rx';
 import Immutable from 'immutable';
+import jsonMarkup from 'json-markup';
 
 class SirenPropertiesView extends PureView {
 	render() {
@@ -8,16 +9,26 @@ class SirenPropertiesView extends PureView {
 			return null;
 		}
 
-		var properties = this.props.properties.map((value, key) =>
-			<div className='siren-properties-view-property'>
-				<div className='siren-properties-view-property-name'>
-					{key}:
+		var properties = this.props.properties.map((value, key) => {
+			var body = value;
+			try {
+				body = jsonMarkup(value);
+			}
+			catch (e) {
+				body = value;
+			}
+
+			var valueHtml = { __html: body };
+
+			return (
+				<div className='siren-properties-view-property'>
+					<div className='siren-properties-view-property-name'>
+						{key}:
+					</div>
+					<div dangerouslySetInnerHTML={valueHtml} className='siren-properties-view-property-value' />
 				</div>
-				<div className='siren-properties-view-property-value'>
-					{JSON.stringify(value)}
-				</div>
-			</div>
-		);
+			);
+		});
 
 		return (
 			<div className='siren-properties-view'>
