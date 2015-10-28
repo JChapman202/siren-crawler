@@ -15,8 +15,16 @@ class ActionView extends PureView {
 	}
 
 	onFieldChange(field, e) {
+		var value = e.target.value;
+
+		if (field.type === 'file') {
+			value = e.target.files[0];
+		}
+
+		var formData = new FormData(this.refs.form);
+
 		this.setState({
-			fields: this.state.fields.set(field.name, this.state.fields.get(field.name).set('value', e.target.value))
+			fields: this.state.fields.set(field.name, this.state.fields.get(field.name).set('value', value))
 		});
 	}
 
@@ -34,7 +42,24 @@ class ActionView extends PureView {
 
 	render() {
 		var action = this.props.action;
-		var formItems = this.state.fields.map(field => <Input type={field.type} label={field.title || field.name} onChange={this.onFieldChange.bind(this, field)} value={field.value} />);
+		var formItems = this.state.fields.map(field => {
+			var value = field.value;
+
+			if (field.value instanceof File) {
+				value = field.value.name;
+			}
+
+			var input;
+
+			if (field.type === 'file') {
+				input = (<Input type={field.type} label={field.title || field.name} onChange={this.onFieldChange.bind(this, field)} />);
+			}
+			else {
+				input = (<Input type={field.type} label={field.title || field.name} onChange={this.onFieldChange.bind(this, field)} value={value} />);
+			}
+
+			return input;
+		});
 
 		return (
 			<div className='action-view'>
