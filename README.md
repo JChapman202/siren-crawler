@@ -25,8 +25,8 @@ Siren-Crawler is currently only available as a git project, and must be built an
 	gulp
 	```
 
-5. Open your local browser and navigate to the local running web server (port 8080 by default)
+5. Open your local browser and navigate to the local running web server (port 8888 by default)
 
 	```
-	open http://localhost:8080/
+	open http://localhost:8888/
 	```
