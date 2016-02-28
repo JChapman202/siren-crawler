@@ -1,6 +1,6 @@
 {
   "name": "siren-crawler",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Siren Hypermedia crawler which renders hypermedia with a React UI",
   "main": "src/app.js",
   "scripts": {
@@ -61,7 +61,7 @@
     "react": "^0.13.3",
     "react-bootstrap": "^0.25.2",
     "react-router": "^1.0.0-beat3",
-    "super-siren": ">=0.1.13",
+    "super-siren": ">=0.1.14",
     "urijs": "^1.16.1"
   }
 }
