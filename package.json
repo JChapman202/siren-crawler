@@ -1,6 +1,6 @@
 {
   "name": "siren-crawler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Siren Hypermedia crawler which renders hypermedia with a React UI",
   "main": "src/app.js",
   "scripts": {
