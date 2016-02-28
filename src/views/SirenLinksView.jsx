@@ -7,7 +7,7 @@ import {formatArray} from '../utilities/format';
 
 class SirenLinksView extends PureView {
 	render() {
-		var linkItems = this.props.links.sortBy(link => link.href).map(link =>
+		var linkItems = this.props.links.map(link =>
 			<tr>
 				<td>
 					{formatArray(link.rels)}
