@@ -2,6 +2,10 @@
 
 Siren hypermedia browser which uses the [super-siren](https://github.com/JChapman202/super-siren) library as a Siren client and React/flux for UI presentation.
 
+# Hosted Version #
+
+To see Siren-Crawler in action, you can use the hosted version here: [Siren-Crawler](http://sirencrawler.altervista.org).
+
 # Getting Started #
 
 Siren-Crawler is currently only available as a git project, and must be built and ran locally.  This may change in the future.
